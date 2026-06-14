@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Summer AI & Software Engineering Program 2026 by Muhammad Mujahid. Live interactive software engineering and AI programs for students in Karachi. Python and Web Development tracks. Small batches, personalized mentorship.">
+  <meta name="description" content="Summer AI & Software Engineering Program 2026 by Muhammad Mujahid. Live interactive software engineering and AI programs for international students in US, UK, Australia, & Pakistan. Python and Web Development tracks. Ultra-exclusive batches of 1–2 students, personalized mentorship.">
   <title>Summer AI & Software Engineering Program 2026 — Muhammad Mujahid</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1553,6 +1553,16 @@
       stroke-linecap: round;
       stroke-linejoin: round;
     }
+    .confirm-icon svg polyline {
+      stroke-dasharray: 40;
+      stroke-dashoffset: 40;
+      animation: drawCheck 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
+    }
+    @keyframes drawCheck {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
 
     .confirm-title {
       font-size: var(--text-xl);
@@ -2386,6 +2396,163 @@
         grid-template-columns: repeat(4, 1fr);
       }
     }
+
+    /* ═════════ Dynamic Timezone & Filter Styles ═════════ */
+    .schedule-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 32px;
+      padding: 16px;
+      background: var(--surface-raised);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: var(--shadow-sm);
+    }
+    
+    @media (min-width: 768px) {
+      .schedule-controls {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 28px;
+      }
+    }
+    
+    .timezone-picker {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .timezone-picker .control-label {
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .tz-select-wrapper {
+      position: relative;
+    }
+    
+    .tz-select-wrapper select {
+      appearance: none;
+      -webkit-appearance: none;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 38px 10px 14px;
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      transition: var(--transition);
+      outline: none;
+    }
+    
+    .tz-select-wrapper select:hover,
+    .tz-select-wrapper select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+    }
+    
+    .tz-select-wrapper::after {
+      content: "▾";
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 14px;
+      color: var(--text-subtle);
+      pointer-events: none;
+    }
+    
+    .schedule-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    
+    .filter-btn {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 8px 16px;
+      border-radius: 10px;
+      font-size: var(--text-xs);
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .filter-btn:hover {
+      border-color: var(--accent);
+      color: var(--text);
+    }
+    
+    .filter-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: white;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
+    }
+    
+    /* New Afternoon Badge Style */
+    .sched-badge.afternoon-badge {
+      background: rgba(245, 158, 11, 0.08) !important;
+      color: #D97706 !important; /* Premium Amber */
+    }
+
+    /* Animation class for entering cards */
+    .schedule-card.appear {
+      animation: cardEnter 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    
+    @keyframes cardEnter {
+      0% {
+        opacity: 0;
+        transform: translateY(16px) scale(0.98);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+    
+    /* Pulsing Highlights on Primary Action Buttons */
+    .pulse-glow-btn {
+      position: relative;
+    }
+    .pulse-glow-btn::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      border-radius: inherit;
+      box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.6);
+      animation: pulseGlowAnimation 2.2s infinite cubic-bezier(0.25, 0, 0, 1);
+      pointer-events: none;
+    }
+    
+    @keyframes pulseGlowAnimation {
+      0% {
+        box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.6);
+      }
+      100% {
+        box-shadow: 0 0 0 12px rgba(37, 99, 235, 0);
+      }
+    }
+
+    /* Floating animation for badge cards */
+    .float-card {
+      animation: floatMotion 3.5s ease-in-out infinite;
+    }
+    @keyframes floatMotion {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
   </style>
 </head>
 <body>
@@ -2447,7 +2614,7 @@
               Learn Programming, AI Tools, and Real-World Development Skills.
             </p>
             <div class="hero-ctas">
-              <a href="#enrollment-form" class="btn btn-lg btn-primary">Apply Now →</a>
+              <a href="#enrollment-form" class="btn btn-lg btn-primary pulse-glow-btn">Apply Now →</a>
               <a href="#programs" class="btn btn-lg btn-ghost">View Programs</a>
             </div>
           </div>
@@ -2477,7 +2644,7 @@
         </div>
 
         <div class="hero-trust">
-          Classes Begin June 8 · Max 6 Students · Google Meet · Karachi
+          Classes Begin June 18 & 20 · Max 1–2 Students · Google Meet · Live Online
         </div>
       </div>
     </section>
@@ -2522,7 +2689,7 @@
           </div>
           <div>
             <div class="info-label">Batch Size</div>
-            <div class="info-value">Max 5–6 Students / Batch</div>
+            <div class="info-value">Max 1–2 Students / Batch</div>
           </div>
         </div>
         <div class="info-item">
@@ -2600,7 +2767,7 @@
             </div>
             <div class="details-wrapper">
               <div class="detail-item"><span class="detail-dot"></span><span class="detail-text"><strong>3 live classes/week</strong> on Google Meet</span></div>
-              <div class="detail-item"><span class="detail-dot"></span><span class="detail-text">Small batches of 5–6 students</span></div>
+              <div class="detail-item"><span class="detail-dot"></span><span class="detail-text">Small batches of 1–2 students</span></div>
               <div class="detail-item"><span class="detail-dot"></span><span class="detail-text">Beginner-friendly projects</span></div>
               <div class="detail-item"><span class="detail-dot"></span><span class="detail-text">AI-assisted learning</span></div>
               <div class="detail-item"><span class="detail-dot"></span><span class="detail-text">Structured curriculum path</span></div>
@@ -2654,7 +2821,7 @@
             </div>
             <div class="details-wrapper">
               <div class="detail-item"><span class="detail-dot cyan"></span><span class="detail-text"><strong>3 live classes/week</strong> on Google Meet</span></div>
-              <div class="detail-item"><span class="detail-dot cyan"></span><span class="detail-text">Small batches of 5–6</span></div>
+              <div class="detail-item"><span class="detail-dot cyan"></span><span class="detail-text">Small batches of 1–2</span></div>
               <div class="detail-item"><span class="detail-dot cyan"></span><span class="detail-text">Real-world development workflow</span></div>
               <div class="detail-item"><span class="detail-dot cyan"></span><span class="detail-text">Portfolio-oriented projects</span></div>
               <div class="detail-item"><span class="detail-dot cyan"></span><span class="detail-text">Industry-style problem solving</span></div>
@@ -2687,73 +2854,43 @@
           <div class="section-label">Class Timings</div>
           <h2 class="section-title" id="schedule-heading">Available Batch Slots</h2>
         </div>
-        <div class="schedule-grid reveal">
-          <!-- Morning Slot 1 -->
-          <div class="schedule-card morning">
-            <div class="sched-card-top">
-              <span class="sched-badge morning-badge">Morning Slot</span>
-              <span class="sched-availability">Available</span>
+        <!-- Timezone & Filter Controls -->
+        <div class="schedule-controls reveal">
+          <!-- Timezone Selector -->
+          <div class="timezone-picker">
+            <span class="control-label">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle;">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="2" y1="12" x2="22" y2="12"/>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+              </svg>
+              Timezone:
+            </span>
+            <div class="tz-select-wrapper">
+              <select id="timezone-select" onchange="changeTimezone(this.value)">
+                <option value="PKT" selected>Pakistan (PKT - UTC+5)</option>
+                <option value="EDT">US Eastern (EDT - UTC-4)</option>
+                <option value="CDT">US Central (CDT - UTC-5)</option>
+                <option value="PDT">US Pacific (PDT - UTC-7)</option>
+                <option value="BST">United Kingdom (BST - UTC+1)</option>
+                <option value="AEST">Australia (AEST - UTC+10)</option>
+                <option value="AWST">Perth (AWST - UTC+8)</option>
+              </select>
             </div>
-            <div class="sched-time">8:00 – 9:00 AM</div>
-            <div class="sched-days">Mon · Tue · Wed</div>
-            <div class="sched-prog">Program 01 · Beginner Python Track</div>
-            <div class="sched-spots">Max 5–6 seats per batch</div>
           </div>
-          <!-- Morning Slot 2 -->
-          <div class="schedule-card morning">
-            <div class="sched-card-top">
-              <span class="sched-badge morning-badge">Morning Slot</span>
-              <span class="sched-availability">Available</span>
-            </div>
-            <div class="sched-time">9:00 – 10:00 AM</div>
-            <div class="sched-days">Mon · Tue · Wed</div>
-            <div class="sched-prog">Program 01 · Beginner Web Dev Track</div>
-            <div class="sched-spots">Max 5–6 seats per batch</div>
+          
+          <!-- Category Filters -->
+          <div class="schedule-filters">
+            <button class="filter-btn active" onclick="filterSchedule('all', this)">All Slots</button>
+            <button class="filter-btn" onclick="filterSchedule('morning', this)">Morning</button>
+            <button class="filter-btn" onclick="filterSchedule('afternoon', this)">Afternoon</button>
+            <button class="filter-btn" onclick="filterSchedule('evening', this)">Evening</button>
+            <button class="filter-btn" onclick="filterSchedule('night', this)">Night</button>
           </div>
-          <!-- Evening Slot 1 -->
-          <div class="schedule-card">
-            <div class="sched-card-top">
-              <span class="sched-badge found">Evening Slot</span>
-              <span class="sched-availability">Available</span>
-            </div>
-            <div class="sched-time">4:00 – 5:00 PM</div>
-            <div class="sched-days">Mon · Tue · Wed</div>
-            <div class="sched-prog">Program 01 · Python or Web Dev Track</div>
-            <div class="sched-spots">Max 5–6 seats per batch</div>
-          </div>
-          <!-- Evening Slot 2 -->
-          <div class="schedule-card">
-            <div class="sched-card-top">
-              <span class="sched-badge found">Evening Slot</span>
-              <span class="sched-availability">Available</span>
-            </div>
-            <div class="sched-time">5:00 – 6:00 PM</div>
-            <div class="sched-days">Mon · Tue · Wed</div>
-            <div class="sched-prog">Program 01 · Python or Web Dev Track</div>
-            <div class="sched-spots">Max 5–6 seats per batch</div>
-          </div>
-          <!-- Evening Slot 3 -->
-          <div class="schedule-card">
-            <div class="sched-card-top">
-              <span class="sched-badge adv">Advanced Evening</span>
-              <span class="sched-availability">Selected Seats Only</span>
-            </div>
-            <div class="sched-time">6:00 – 7:00 PM</div>
-            <div class="sched-days">Mon · Tue · Wed</div>
-            <div class="sched-prog">Program 02 · Advanced Python or Full Stack</div>
-            <div class="sched-spots">Max 5–6 seats per batch</div>
-          </div>
-          <!-- Evening Slot 4 -->
-          <div class="schedule-card">
-            <div class="sched-card-top">
-              <span class="sched-badge adv">Advanced Evening</span>
-              <span class="sched-availability">Selected Seats Only</span>
-            </div>
-            <div class="sched-time">7:00 – 8:00 PM</div>
-            <div class="sched-days">Mon · Tue · Wed</div>
-            <div class="sched-prog">Program 02 · Advanced Python or Full Stack</div>
-            <div class="sched-spots">Max 5–6 seats per batch</div>
-          </div>
+        </div>
+
+        <div class="schedule-grid reveal" id="schedule-grid">
+          <!-- Dynamic schedule cards will be populated here -->
         </div>
       </div>
     </section>
@@ -2850,7 +2987,7 @@
               </svg>
             </div>
             <div class="feature-name">Elite Small Batch Sizes</div>
-            <div class="feature-desc">Strictly limited to 5–6 students per batch. Ensures personal attention, real-time code debugging, and active group collaboration.</div>
+            <div class="feature-desc">Strictly limited to 1–2 students per batch. Ensures personal attention, real-time code debugging, and active group collaboration.</div>
           </div>
         </div>
       </div>
@@ -2896,7 +3033,7 @@
             <div class="flow-circle">5</div>
             <div class="flow-content">
               <div class="flow-title">Enroll &amp; Begin</div>
-              <div class="flow-desc">Pay · Confirm · Start June 8, 2026</div>
+              <div class="flow-desc">Pay · Confirm · Start June 18 / 20, 2026</div>
             </div>
           </div>
         </div>
@@ -3000,10 +3137,10 @@
           <div class="cta-badge">Limited Summer Admissions Open</div>
           <h2 class="cta-heading" id="cta-heading">Seats Are Filling Fast.<br>Secure Yours Today.</h2>
           <p class="cta-sub">
-            With only 5–6 students per batch, every student gets personal attention. Once seats are full, enrollment closes. Fill the application or WhatsApp directly — no commitment required.
+            With only 1–2 students per batch, every student gets personal attention. Once seats are full, enrollment closes. Fill the application or WhatsApp directly — no commitment required.
           </p>
           <div class="cta-meta">
-            Classes begin June 8, 2026 &nbsp;·&nbsp; Google Meet &nbsp;·&nbsp; Karachi, Pakistan
+            Classes begin June 18 & 20, 2026 &nbsp;·&nbsp; Google Meet &nbsp;·&nbsp; Live Online
           </div>
         </div>
         <div class="cta-actions">
@@ -3197,17 +3334,23 @@
               </div>
             </div>
 
+            <div class="form-group" id="g-tz-form">
+              <label class="form-label" for="form-timezone-select">Preferred Timezone</label>
+              <select class="form-select" id="form-timezone-select" onchange="changeTimezone(this.value)">
+                <option value="PKT" selected>Pakistan Standard Time (PKT - UTC+5)</option>
+                <option value="EDT">US Eastern Time (EDT - UTC-4)</option>
+                <option value="CDT">US Central Time (CDT - UTC-5)</option>
+                <option value="PDT">US Pacific Time (PDT - UTC-7)</option>
+                <option value="BST">United Kingdom Time (BST - UTC+1)</option>
+                <option value="AEST">Australia Eastern Time (AEST - UTC+10)</option>
+                <option value="AWST">Western Australia Time (AWST - UTC+8)</option>
+              </select>
+            </div>
+
             <div class="form-group" id="g-slot">
               <label class="form-label" for="slot">Preferred Batch Slot <span class="req">*</span></label>
               <select class="form-select" id="slot">
                 <option value="">Select a time slot</option>
-                <option>8:00–9:00 AM (Foundation - Python)</option>
-                <option>9:00–10:00 AM (Foundation - Web Dev)</option>
-                <option>4:00–5:00 PM (Foundation)</option>
-                <option>5:00–6:00 PM (Foundation)</option>
-                <option>6:00–7:00 PM (Advanced)</option>
-                <option>7:00–8:00 PM (Advanced)</option>
-                <option>No preference — guide me</option>
               </select>
               <div class="form-error">Please select a slot.</div>
             </div>
@@ -3299,7 +3442,7 @@
             </div>
 
             <div class="form-nav" style="flex-direction: column; gap: 10px">
-              <button class="btn-submit" onclick="submitForm()">Submit Application →</button>
+              <button class="btn-submit pulse-glow-btn" onclick="submitForm()">Submit Application →</button>
               <button class="btn-prev" onclick="prevStep(5)" style="width: 100%; text-align: center">← Edit Details</button>
             </div>
 
@@ -3321,10 +3464,10 @@
             </div>
 
             <div class="confirm-urgency">
-              ⚡ Seats are limited to 5–6 per batch. To reserve your spot, WhatsApp us now and we'll confirm your demo class within hours.
+              ⚡ Seats are limited to 1–2 per batch. To reserve your spot, WhatsApp us now and we'll confirm your demo class within hours.
             </div>
 
-            <a class="confirm-wa-btn" id="wa-confirm-btn" href="#">
+            <a class="confirm-wa-btn pulse-glow-btn" id="wa-confirm-btn" href="#">
               <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
               </svg>
@@ -3351,7 +3494,7 @@
               <div class="confirm-step">
                 <div class="confirm-step-num">3</div>
                 <div class="confirm-step-text">
-                  <strong>Confirm Enrollment</strong>After the demo, confirm your seat and begin June 8, 2026.
+                  <strong>Confirm Enrollment</strong>After the demo, confirm your seat and begin June 18 / 20, 2026.
                 </div>
               </div>
             </div>
@@ -3453,6 +3596,326 @@
   </footer>
 
   <script>
+      // ═════════ Dynamic Timezone & Scheduler JS ═════════
+      const TZ_OFFSETS = {
+        PKT: { name: "Pakistan Time", offset: 5, label: "PKT" },
+        EDT: { name: "US Eastern Time", offset: -4, label: "EDT" },
+        CDT: { name: "US Central Time", offset: -5, label: "CDT" },
+        PDT: { name: "US Pacific Time", offset: -7, label: "PDT" },
+        BST: { name: "United Kingdom Time", offset: 1, label: "BST" },
+        AEST: { name: "Australia Time", offset: 10, label: "AEST" },
+        AWST: { name: "Perth Time", offset: 8, label: "AWST" }
+      };
+
+      let activeTimezone = "PKT";
+      let activeFilter = "all";
+
+      const BATCH_SLOTS = [
+        {
+          id: "slot-1",
+          pktStart: 8,
+          pktEnd: 9,
+          days: "Mon · Tue · Wed",
+          track: "Program 01 · Beginner Python Track",
+          type: "morning",
+          status: "Available",
+          cohort: "Cohort A (Starts June 18)"
+        },
+        {
+          id: "slot-2",
+          pktStart: 9,
+          pktEnd: 10,
+          days: "Mon · Tue · Wed",
+          track: "Program 01 · Beginner Web Dev Track",
+          type: "morning",
+          status: "Available",
+          cohort: "Cohort A (Starts June 18)"
+        },
+        {
+          id: "slot-3",
+          pktStart: 10.5,
+          pktEnd: 11.5,
+          days: "Thu · Fri · Sat",
+          track: "Program 01 · Python or Web Dev Track",
+          type: "morning",
+          status: "Available",
+          cohort: "Cohort B (Starts June 20)"
+        },
+        {
+          id: "slot-4",
+          pktStart: 13.5,
+          pktEnd: 14.5,
+          days: "Thu · Fri · Sat",
+          track: "Program 01 · Beginner Python Track",
+          type: "afternoon",
+          status: "Available",
+          cohort: "Cohort B (Starts June 20)"
+        },
+        {
+          id: "slot-5",
+          pktStart: 15,
+          pktEnd: 16,
+          days: "Mon · Tue · Wed",
+          track: "Program 01 · Beginner Web Dev Track",
+          type: "afternoon",
+          status: "Available",
+          cohort: "Cohort A (Starts June 18)"
+        },
+        {
+          id: "slot-6",
+          pktStart: 16.5,
+          pktEnd: 17.5,
+          days: "Mon · Tue · Wed",
+          track: "Program 01 · Python or Web Dev Track",
+          type: "evening",
+          status: "Available",
+          cohort: "Cohort A (Starts June 18)"
+        },
+        {
+          id: "slot-7",
+          pktStart: 18,
+          pktEnd: 19,
+          days: "Mon · Tue · Wed",
+          track: "Program 02 · Advanced Python or Full Stack",
+          type: "evening",
+          status: "Selected Seats Only",
+          cohort: "Cohort A (Starts June 18)"
+        },
+        {
+          id: "slot-8",
+          pktStart: 19.25,
+          pktEnd: 20.25,
+          days: "Mon · Tue · Wed",
+          track: "Program 02 · Advanced Python or Full Stack",
+          type: "evening",
+          status: "Selected Seats Only",
+          cohort: "Cohort A (Starts June 18)"
+        },
+        {
+          id: "slot-9",
+          pktStart: 21,
+          pktEnd: 22,
+          days: "Thu · Fri · Sat",
+          track: "Program 01 · Beginner Python Track",
+          type: "night",
+          status: "Available",
+          cohort: "Cohort B (Starts June 20)"
+        },
+        {
+          id: "slot-10",
+          pktStart: 22.5,
+          pktEnd: 23.5,
+          days: "Thu · Fri · Sat",
+          track: "Program 02 · Advanced Python or Full Stack",
+          type: "night",
+          status: "Selected Seats Only",
+          cohort: "Cohort B (Starts June 20)"
+        },
+        {
+          id: "slot-11",
+          pktStart: 23.75,
+          pktEnd: 24.75,
+          days: "Thu · Fri · Sat",
+          track: "Program 02 · Advanced Python or Full Stack",
+          type: "night",
+          status: "Selected Seats Only",
+          cohort: "Cohort B (Starts June 20)"
+        }
+      ];
+
+      function formatTimeDecimal(hourDecimal) {
+        let hour = Math.floor(hourDecimal);
+        let minutes = Math.round((hourDecimal - hour) * 60);
+        let ampm = 'AM';
+        
+        let normalizedHour = hour;
+        if (normalizedHour >= 24) {
+          normalizedHour -= 24;
+        }
+        
+        if (normalizedHour >= 12) {
+          ampm = 'PM';
+          if (normalizedHour > 12) normalizedHour -= 12;
+        } else if (normalizedHour === 0) {
+          normalizedHour = 12;
+        }
+        
+        let displayMinutes = minutes === 0 ? '' : ':' + (minutes < 10 ? '0' + minutes : minutes);
+        return `${normalizedHour}${displayMinutes} ${ampm}`;
+      }
+
+      function convertSlotTime(pktHourDecimal, tzKey) {
+        const offset = TZ_OFFSETS[tzKey].offset;
+        let utc = pktHourDecimal - 5;
+        let localHour = utc + offset;
+        
+        let dayOffset = 0;
+        while (localHour < 0) {
+          dayOffset -= 1;
+          localHour += 24;
+        }
+        while (localHour >= 24) {
+          dayOffset += 1;
+          localHour -= 24;
+        }
+        return { hour: localHour, dayOffset: dayOffset };
+      }
+
+      const WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+      function shiftDaysString(daysStr, dayOffset) {
+        if (dayOffset === 0) return daysStr;
+        let days = daysStr.split(' · ');
+        let shiftedDays = days.map(d => {
+          let idx = WEEKDAYS.indexOf(d);
+          if (idx === -1) {
+            if (d.startsWith("Mon")) idx = 1;
+            else if (d.startsWith("Tue")) idx = 2;
+            else if (d.startsWith("Wed")) idx = 3;
+            else if (d.startsWith("Thu")) idx = 4;
+            else if (d.startsWith("Fri")) idx = 5;
+            else if (d.startsWith("Sat")) idx = 6;
+            else if (d.startsWith("Sun")) idx = 0;
+          }
+          let newIdx = (idx + dayOffset + 7) % 7;
+          return WEEKDAYS[newIdx];
+        });
+        return shiftedDays.join(' · ');
+      }
+
+      function getConvertedSlotLabel(slot, tzKey) {
+        let startInfo = convertSlotTime(slot.pktStart, tzKey);
+        let endInfo = convertSlotTime(slot.pktEnd, tzKey);
+        
+        let timeStr = `${formatTimeDecimal(startInfo.hour)} – ${formatTimeDecimal(endInfo.hour)}`;
+        let dayStr = shiftDaysString(slot.days, startInfo.dayOffset);
+        
+        let suffix = "";
+        if (startInfo.dayOffset === -1) {
+          suffix = " (Prev Day)";
+        } else if (startInfo.dayOffset === 1) {
+          suffix = " (Next Day)";
+        }
+        
+        return {
+          time: timeStr + suffix,
+          days: dayStr,
+          timezone: TZ_OFFSETS[tzKey].label
+        };
+      }
+
+      function renderScheduleGrid() {
+        const grid = document.getElementById("schedule-grid");
+        if (!grid) return;
+        
+        grid.innerHTML = "";
+        
+        const filtered = BATCH_SLOTS.filter(slot => {
+          if (activeFilter === "all") return true;
+          return slot.type === activeFilter;
+        });
+        
+        if (filtered.length === 0) {
+          grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--text-muted); font-weight: 600;">No slots available for this category.</div>`;
+          return;
+        }
+        
+        filtered.forEach((slot, index) => {
+          const info = getConvertedSlotLabel(slot, activeTimezone);
+          
+          let badgeClass = "found";
+          let badgeText = "Evening Slot";
+          
+          if (slot.type === "morning") {
+            badgeClass = "morning-badge";
+            badgeText = "Morning Slot";
+          } else if (slot.type === "afternoon") {
+            badgeClass = "afternoon-badge";
+            badgeText = "Afternoon Slot";
+          } else if (slot.type === "evening") {
+            badgeClass = "found";
+            badgeText = "Evening Slot";
+          } else if (slot.type === "night") {
+            badgeClass = "adv";
+            badgeText = "Night Slot";
+          }
+          
+          if (slot.status === "Selected Seats Only") {
+            badgeClass += " adv";
+            badgeText = "Selected Seats Only";
+          }
+          
+          const cardHtml = `
+            <div class="schedule-card appear" style="animation-delay: ${index * 0.05}s;">
+              <div class="sched-card-top">
+                <span class="sched-badge ${badgeClass}">${badgeText}</span>
+                <span class="sched-availability" style="color: ${slot.status === 'Available' ? 'var(--accent)' : '#0D9488'}; font-weight: 600;">${slot.status}</span>
+              </div>
+              <div class="sched-time">${info.time} <span style="font-size: var(--text-xs); color: var(--text-subtle); font-weight: 600;">${info.timezone}</span></div>
+              <div class="sched-days">${info.days}</div>
+              <div class="sched-prog">${slot.track}</div>
+              <div class="sched-spots" style="color: #D97706;">Max 1–2 seats (Super-Exclusive)</div>
+              <div style="font-size: 11px; color: var(--text-subtle); margin-top: 6px; font-weight: 500;">${slot.cohort}</div>
+            </div>
+          `;
+          grid.insertAdjacentHTML("beforeend", cardHtml);
+        });
+      }
+
+      function changeTimezone(tzVal) {
+        activeTimezone = tzVal;
+        
+        // Sync the timezone selects
+        const tzSelectMain = document.getElementById("timezone-select");
+        if (tzSelectMain && tzSelectMain.value !== tzVal) {
+          tzSelectMain.value = tzVal;
+        }
+        
+        const tzSelectForm = document.getElementById("form-timezone-select");
+        if (tzSelectForm && tzSelectForm.value !== tzVal) {
+          tzSelectForm.value = tzVal;
+        }
+        
+        renderScheduleGrid();
+        populateFormSlotSelect();
+      }
+
+      function filterSchedule(category, btnEl) {
+        activeFilter = category;
+        
+        const filterBtns = document.querySelectorAll(".filter-btn");
+        filterBtns.forEach(btn => btn.classList.remove("active"));
+        if (btnEl) btnEl.classList.add("active");
+        
+        renderScheduleGrid();
+      }
+
+      function populateFormSlotSelect() {
+        const slotSelect = document.getElementById("slot");
+        if (!slotSelect) return;
+        
+        const currentSelectedValue = slotSelect.value;
+        
+        slotSelect.innerHTML = `<option value="">Select a time slot</option>`;
+        
+        BATCH_SLOTS.forEach(slot => {
+          const info = getConvertedSlotLabel(slot, activeTimezone);
+          const val = `${info.time} (${info.timezone}) - ${slot.days} [${slot.track}]`;
+          
+          const opt = document.createElement("option");
+          opt.value = val;
+          opt.textContent = `${info.time} (${info.timezone}) - ${info.days} [${slot.track.replace("Program 01 · ", "").replace("Program 02 · ", "")}]`;
+          
+          slotSelect.appendChild(opt);
+        });
+        
+        const noPrefOpt = document.createElement("option");
+        noPrefOpt.value = "No preference — guide me";
+        noPrefOpt.textContent = "No preference — guide me";
+        slotSelect.appendChild(noPrefOpt);
+        
+        slotSelect.value = currentSelectedValue;
+      }
+
       const TOTAL_STEPS = 5;
       let currentStep = 1;
 
@@ -3723,6 +4186,10 @@
 
       // Scroll reveal & 3D Tilt Card animation
       document.addEventListener('DOMContentLoaded', function() {
+        // Initialize dynamic schedule and form dropdown
+        renderScheduleGrid();
+        populateFormSlotSelect();
+
         // Scroll Reveal
         const revealEls = document.querySelectorAll('.reveal');
         if (revealEls.length) {
