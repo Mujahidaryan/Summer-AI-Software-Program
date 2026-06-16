@@ -2421,8 +2421,10 @@
     
     .timezone-picker {
       display: flex;
-      align-items: center;
-      gap: 12px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+      width: 100%;
     }
     
     .timezone-picker .control-label {
@@ -2436,6 +2438,7 @@
     
     .tz-select-wrapper {
       position: relative;
+      width: 100%;
     }
     
     .tz-select-wrapper select {
@@ -2451,6 +2454,7 @@
       cursor: pointer;
       transition: var(--transition);
       outline: none;
+      width: 100%;
     }
     
     .tz-select-wrapper select:hover,
@@ -2468,6 +2472,21 @@
       font-size: 14px;
       color: var(--text-subtle);
       pointer-events: none;
+    }
+
+    @media (min-width: 576px) {
+      .timezone-picker {
+        flex-direction: row;
+        align-items: center;
+        gap: 12px;
+        width: auto;
+      }
+      .tz-select-wrapper {
+        width: auto;
+      }
+      .tz-select-wrapper select {
+        width: auto;
+      }
     }
     
     .schedule-filters {
