@@ -2663,7 +2663,7 @@
         </div>
 
         <div class="hero-trust">
-          Classes Begin June 18 & 20 · Max 1–2 Students · Google Meet · Live Online
+          Classes Begin June 22 & July 10 · Max 1–2 Students · Google Meet · Live Online
         </div>
       </div>
     </section>
@@ -2795,7 +2795,7 @@
             <div class="program-footer">
               <div>
                 <div class="price-label">Monthly Fee</div>
-                <div class="price-value">PKR 25,000 <span class="price-period">/ mo</span></div>
+                <div class="price-value" id="price-val-1">PKR 25,000 <span class="price-period">/ mo</span></div>
               </div>
               <a class="enroll-btn" href="#enrollment-form" onclick="prefillProgram('Program 01 — Foundation Coding Program')">Apply Now ›</a>
             </div>
@@ -2857,7 +2857,7 @@
             <div class="program-footer">
               <div>
                 <div class="price-label">Monthly Fee</div>
-                <div class="price-value">PKR 30,000 <span class="price-period">/ mo</span></div>
+                <div class="price-value" id="price-val-2">PKR 30,000 <span class="price-period">/ mo</span></div>
               </div>
               <a class="enroll-btn cyan-btn" href="#enrollment-form" onclick="prefillProgram('Program 02 — Advanced Full Stack Development')">Apply Now ›</a>
             </div>
@@ -3052,7 +3052,7 @@
             <div class="flow-circle">5</div>
             <div class="flow-content">
               <div class="flow-title">Enroll &amp; Begin</div>
-              <div class="flow-desc">Pay · Confirm · Start June 18 / 20, 2026</div>
+              <div class="flow-desc">Pay · Confirm · Start June 22 / July 10, 2026</div>
             </div>
           </div>
         </div>
@@ -3159,7 +3159,7 @@
             With only 1–2 students per batch, every student gets personal attention. Once seats are full, enrollment closes. Fill the application or WhatsApp directly — no commitment required.
           </p>
           <div class="cta-meta">
-            Classes begin June 18 & 20, 2026 &nbsp;·&nbsp; Google Meet &nbsp;·&nbsp; Live Online
+            Classes begin June 22 & July 10, 2026 &nbsp;·&nbsp; Google Meet &nbsp;·&nbsp; Live Online
           </div>
         </div>
         <div class="cta-actions">
@@ -3313,11 +3313,11 @@
               <div class="radio-group">
                 <label class="radio-option">
                   <input type="radio" name="program" value="Program 01 — Foundation Coding Program" id="prog1" onchange="onProgramChange()" />
-                  <span class="radio-label"><strong>Program 01 — Foundation Coding Program</strong>2 Months · PKR 25,000/mo · Beginners, Grade 5–8 &amp; Above</span>
+                  <span class="radio-label"><strong>Program 01 — Foundation Coding Program</strong>2 Months · <span id="prog1-price-form">PKR 25,000/mo</span> · Beginners, Grade 5–8 &amp; Above</span>
                 </label>
                 <label class="radio-option">
                   <input type="radio" name="program" value="Program 02 — Advanced Full Stack Development" id="prog2" onchange="onProgramChange()" />
-                  <span class="radio-label"><strong>Program 02 — Advanced Full Stack Development</strong>3 Months · PKR 30,000/mo · Intermediate &amp; Above</span>
+                  <span class="radio-label"><strong>Program 02 — Advanced Full Stack Development</strong>3 Months · <span id="prog2-price-form">PKR 30,000/mo</span> · Intermediate &amp; Above</span>
                 </label>
               </div>
               <div class="form-error">Please select a program.</div>
@@ -3513,7 +3513,7 @@
               <div class="confirm-step">
                 <div class="confirm-step-num">3</div>
                 <div class="confirm-step-text">
-                  <strong>Confirm Enrollment</strong>After the demo, confirm your seat and begin June 18 / 20, 2026.
+                  <strong>Confirm Enrollment</strong>After the demo, confirm your seat and begin June 22 / July 10, 2026.
                 </div>
               </div>
             </div>
@@ -3629,6 +3629,89 @@
       let activeTimezone = "PKT";
       let activeFilter = "all";
 
+      const FEE_CONFIG = {
+        PKT: {
+          currency: "PKR",
+          symbol: "PKR ",
+          suffix: "",
+          prog1: "25,000",
+          prog2: "30,000",
+          period: "/ mo"
+        },
+        EDT: {
+          currency: "USD",
+          symbol: "$",
+          suffix: " USD",
+          prog1: "120",
+          prog2: "140",
+          period: "/ mo"
+        },
+        CDT: {
+          currency: "USD",
+          symbol: "$",
+          suffix: " USD",
+          prog1: "120",
+          prog2: "140",
+          period: "/ mo"
+        },
+        PDT: {
+          currency: "USD",
+          symbol: "$",
+          suffix: " USD",
+          prog1: "120",
+          prog2: "140",
+          period: "/ mo"
+        },
+        BST: {
+          currency: "GBP",
+          symbol: "£",
+          suffix: " GBP",
+          prog1: "95",
+          prog2: "110",
+          period: "/ mo"
+        },
+        AEST: {
+          currency: "AUD",
+          symbol: "A$",
+          suffix: " AUD",
+          prog1: "180",
+          prog2: "210",
+          period: "/ mo"
+        },
+        AWST: {
+          currency: "AUD",
+          symbol: "A$",
+          suffix: " AUD",
+          prog1: "180",
+          prog2: "210",
+          period: "/ mo"
+        }
+      };
+
+      function updateTuitionFees(tzVal) {
+        const feeInfo = FEE_CONFIG[tzVal] || FEE_CONFIG.PKT;
+        
+        const priceVal1 = document.getElementById("price-val-1");
+        if (priceVal1) {
+          priceVal1.innerHTML = `${feeInfo.symbol}${feeInfo.prog1}${feeInfo.suffix} <span class="price-period">${feeInfo.period}</span>`;
+        }
+        
+        const priceVal2 = document.getElementById("price-val-2");
+        if (priceVal2) {
+          priceVal2.innerHTML = `${feeInfo.symbol}${feeInfo.prog2}${feeInfo.suffix} <span class="price-period">${feeInfo.period}</span>`;
+        }
+        
+        const prog1PriceForm = document.getElementById("prog1-price-form");
+        if (prog1PriceForm) {
+          prog1PriceForm.textContent = `${feeInfo.symbol}${feeInfo.prog1}${feeInfo.suffix}/mo`;
+        }
+        
+        const prog2PriceForm = document.getElementById("prog2-price-form");
+        if (prog2PriceForm) {
+          prog2PriceForm.textContent = `${feeInfo.symbol}${feeInfo.prog2}${feeInfo.suffix}/mo`;
+        }
+      }
+
       const BATCH_SLOTS = [
         {
           id: "slot-1",
@@ -3638,7 +3721,7 @@
           track: "Program 01 · Beginner Python Track",
           type: "morning",
           status: "Available",
-          cohort: "Cohort A (Starts June 18)"
+          cohort: "Cohort A (Starts June 22)"
         },
         {
           id: "slot-2",
@@ -3648,7 +3731,7 @@
           track: "Program 01 · Beginner Web Dev Track",
           type: "morning",
           status: "Available",
-          cohort: "Cohort A (Starts June 18)"
+          cohort: "Cohort A (Starts June 22)"
         },
         {
           id: "slot-3",
@@ -3658,7 +3741,7 @@
           track: "Program 01 · Python or Web Dev Track",
           type: "morning",
           status: "Available",
-          cohort: "Cohort B (Starts June 20)"
+          cohort: "Cohort B (Starts July 10)"
         },
         {
           id: "slot-4",
@@ -3668,7 +3751,7 @@
           track: "Program 01 · Beginner Python Track",
           type: "afternoon",
           status: "Available",
-          cohort: "Cohort B (Starts June 20)"
+          cohort: "Cohort B (Starts July 10)"
         },
         {
           id: "slot-5",
@@ -3678,7 +3761,7 @@
           track: "Program 01 · Beginner Web Dev Track",
           type: "afternoon",
           status: "Available",
-          cohort: "Cohort A (Starts June 18)"
+          cohort: "Cohort A (Starts June 22)"
         },
         {
           id: "slot-6",
@@ -3688,7 +3771,7 @@
           track: "Program 01 · Python or Web Dev Track",
           type: "evening",
           status: "Available",
-          cohort: "Cohort A (Starts June 18)"
+          cohort: "Cohort A (Starts June 22)"
         },
         {
           id: "slot-7",
@@ -3698,7 +3781,7 @@
           track: "Program 02 · Advanced Python or Full Stack",
           type: "evening",
           status: "Selected Seats Only",
-          cohort: "Cohort A (Starts June 18)"
+          cohort: "Cohort A (Starts June 22)"
         },
         {
           id: "slot-8",
@@ -3708,7 +3791,7 @@
           track: "Program 02 · Advanced Python or Full Stack",
           type: "evening",
           status: "Selected Seats Only",
-          cohort: "Cohort A (Starts June 18)"
+          cohort: "Cohort A (Starts June 22)"
         },
         {
           id: "slot-9",
@@ -3718,7 +3801,7 @@
           track: "Program 01 · Beginner Python Track",
           type: "night",
           status: "Available",
-          cohort: "Cohort B (Starts June 20)"
+          cohort: "Cohort B (Starts July 10)"
         },
         {
           id: "slot-10",
@@ -3728,7 +3811,7 @@
           track: "Program 02 · Advanced Python or Full Stack",
           type: "night",
           status: "Selected Seats Only",
-          cohort: "Cohort B (Starts June 20)"
+          cohort: "Cohort B (Starts July 10)"
         },
         {
           id: "slot-11",
@@ -3738,7 +3821,7 @@
           track: "Program 02 · Advanced Python or Full Stack",
           type: "night",
           status: "Selected Seats Only",
-          cohort: "Cohort B (Starts June 20)"
+          cohort: "Cohort B (Starts July 10)"
         }
       ];
 
@@ -3896,6 +3979,7 @@
         
         renderScheduleGrid();
         populateFormSlotSelect();
+        updateTuitionFees(tzVal);
       }
 
       function filterSchedule(category, btnEl) {
@@ -4208,6 +4292,7 @@
         // Initialize dynamic schedule and form dropdown
         renderScheduleGrid();
         populateFormSlotSelect();
+        updateTuitionFees(activeTimezone);
 
         // Scroll Reveal
         const revealEls = document.querySelectorAll('.reveal');
